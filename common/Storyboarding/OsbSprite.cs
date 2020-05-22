@@ -198,17 +198,17 @@ namespace StorybrewCommon.Storyboarding
 
         private List<KeyValuePair<Predicate<ICommand>, IAnimatedValueBuilder>> displayValueBuilders = new List<KeyValuePair<Predicate<ICommand>, IAnimatedValueBuilder>>();
 
-        private AnimatedValue<CommandPosition> moveTimeline = new AnimatedValue<CommandPosition>();
-        private AnimatedValue<CommandDecimal> moveXTimeline = new AnimatedValue<CommandDecimal>();
-        private AnimatedValue<CommandDecimal> moveYTimeline = new AnimatedValue<CommandDecimal>();
-        private AnimatedValue<CommandDecimal> scaleTimeline = new AnimatedValue<CommandDecimal>(1);
-        private AnimatedValue<CommandScale> scaleVecTimeline = new AnimatedValue<CommandScale>(Vector2.One);
-        private AnimatedValue<CommandDecimal> rotateTimeline = new AnimatedValue<CommandDecimal>();
-        private AnimatedValue<CommandDecimal> fadeTimeline = new AnimatedValue<CommandDecimal>(1);
-        private AnimatedValue<CommandColor> colorTimeline = new AnimatedValue<CommandColor>(CommandColor.FromRgb(255, 255, 255));
-        private AnimatedValue<CommandParameter> additiveTimeline = new AnimatedValue<CommandParameter>(CommandParameter.None, true);
-        private AnimatedValue<CommandParameter> flipHTimeline = new AnimatedValue<CommandParameter>(CommandParameter.None, true);
-        private AnimatedValue<CommandParameter> flipVTimeline = new AnimatedValue<CommandParameter>(CommandParameter.None, true);
+        protected AnimatedValue<CommandPosition> moveTimeline = new AnimatedValue<CommandPosition>();
+        protected AnimatedValue<CommandDecimal> moveXTimeline = new AnimatedValue<CommandDecimal>();
+        protected AnimatedValue<CommandDecimal> moveYTimeline = new AnimatedValue<CommandDecimal>();
+        protected AnimatedValue<CommandDecimal> scaleTimeline = new AnimatedValue<CommandDecimal>(1);
+        protected AnimatedValue<CommandScale> scaleVecTimeline = new AnimatedValue<CommandScale>(Vector2.One);
+        protected AnimatedValue<CommandDecimal> rotateTimeline = new AnimatedValue<CommandDecimal>();
+        protected AnimatedValue<CommandDecimal> fadeTimeline = new AnimatedValue<CommandDecimal>(1);
+        protected AnimatedValue<CommandColor> colorTimeline = new AnimatedValue<CommandColor>(CommandColor.FromRgb(255, 255, 255));
+        protected AnimatedValue<CommandParameter> additiveTimeline = new AnimatedValue<CommandParameter>(CommandParameter.None, true);
+        protected AnimatedValue<CommandParameter> flipHTimeline = new AnimatedValue<CommandParameter>(CommandParameter.None, true);
+        protected AnimatedValue<CommandParameter> flipVTimeline = new AnimatedValue<CommandParameter>(CommandParameter.None, true);
 
         public CommandPosition PositionAt(double time) => moveTimeline.HasCommands ? moveTimeline.ValueAtTime(time) : new CommandPosition(moveXTimeline.ValueAtTime(time), moveYTimeline.ValueAtTime(time));
         public CommandScale ScaleAt(double time) => scaleVecTimeline.HasCommands ? scaleVecTimeline.ValueAtTime(time) : new CommandScale(scaleTimeline.ValueAtTime(time));

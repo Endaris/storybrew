@@ -96,7 +96,7 @@ namespace StorybrewScripts
                 var angle = i * (Math.PI * 2) / BarCount;
                 var defaultPosition = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * Radius;
 
-                var bar = layer.CreateSprite(SpritePath, SpriteOrigin);
+                var bar = new ComposedOsbSprite(layer, SpritePath, SpriteOrigin);
                 bar.ColorHsb(StartTime, (i * 360.0 / BarCount) + Random(-10.0, 10.0), 0.6 + Random(0.4), 1);
                 if (SpriteScale.X == SpriteScale.Y)
                     bar.Scale(StartTime, barScale * SpriteScale.X);
@@ -115,6 +115,7 @@ namespace StorybrewScripts
                     s => new Vector2((float)Math.Round(s.X, CommandDecimals), (float)Math.Round(s.Y, CommandDecimals))
                 );
                 if (!hasMove) bar.Move(StartTime, defaultPosition);
+                bar.Fragment();
             }
         }
     }

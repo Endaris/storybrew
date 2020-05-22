@@ -91,7 +91,7 @@ namespace StorybrewScripts
                 var keyframes = heightKeyframes[i];
                 keyframes.Simplify1dKeyframes(Tolerance, h => h);
 
-                var bar = layer.CreateSprite(SpritePath, SpriteOrigin, new Vector2(Position.X + i * barWidth, Position.Y));
+                ComposedOsbSprite bar = new ComposedOsbSprite(layer, SpritePath, SpriteOrigin, new Vector2(Position.X + i * barWidth, Position.Y));
                 bar.ColorHsb(StartTime, (i * 360.0 / BarCount) + Random(-10.0, 10.0), 0.6 + Random(0.4), 1);
                 bar.Additive(StartTime, EndTime);
 
@@ -111,6 +111,7 @@ namespace StorybrewScripts
                     s => (float)Math.Round(s, CommandDecimals)
                 );
                 if (!hasScale) bar.ScaleVec(StartTime, scaleX, MinimalHeight);
+                bar.Fragment();
             }
         }
     }
